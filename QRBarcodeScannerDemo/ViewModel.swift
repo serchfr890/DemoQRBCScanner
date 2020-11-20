@@ -12,8 +12,9 @@ import RxCocoa
 class ViewModel {
     let qrCodeScannedFromScannerCamera = PublishSubject<String>()
     let bcCodeScannerFromScannerCamera = PublishSubject<String>()
-    var bindingQrDataTable = BehaviorSubject<[String]>(value: [])
-    var bindingBcDataTable = BehaviorSubject<[String]>(value: [])
+    let bindingQrDataTable = BehaviorSubject<[String]>(value: [])
+    let bindingBcDataTable = BehaviorSubject<[String]>(value: [])
+    let alertCtrl = PublishSubject<String>()
     let disposeBag = DisposeBag()
     var qrCodesScanned: [String] = []
     var bcCodesScanned: [String] = []
@@ -23,7 +24,7 @@ class ViewModel {
             if !codeScanned.isEmpty {
                 self?.qrCodesScanned.append(codeScanned)
             }
-            self?.bindingQrDataTable.onNext(self?.qrCodesScanned ?? ["a","b","c"])
+            self?.bindingQrDataTable.onNext(self?.qrCodesScanned ?? [])
         }).disposed(by: disposeBag)
         
         // Gets Bar Code data and print it to table
@@ -31,8 +32,7 @@ class ViewModel {
             if !bcCodeScanned.isEmpty {
                 self?.bcCodesScanned.append(bcCodeScanned)
             }
-            self?.bindingBcDataTable.onNext(self?.bcCodesScanned ?? ["a", "b", "c"] )
+            self?.bindingBcDataTable.onNext(self?.bcCodesScanned ?? [] )
         }).disposed(by: disposeBag)
     }
-    
 }

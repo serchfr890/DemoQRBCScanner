@@ -40,9 +40,6 @@ class ViewController: UIViewController {
     }
     
     private func viewModelBinding() {
-        viewModel.bindingQrDataTable.subscribe(onNext: { res in
-            print(res)
-        }).disposed(by: disposeBag)
         
         viewModel.bindingBcDataTable.bind(to: bcTableView.rx.items(cellIdentifier: "BCTableViewCell", cellType: BCTableViewCell.self)) { _, data, cell in
             cell.bcDataLabel.text = data
@@ -52,7 +49,5 @@ class ViewController: UIViewController {
             cell.qrDataLabel.text = data
         }.disposed(by: disposeBag)
     }
-
-
 }
 
