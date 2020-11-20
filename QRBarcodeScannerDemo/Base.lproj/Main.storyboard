@@ -17,22 +17,129 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJj-n9-dST">
-                                <rect key="frame" x="363.5" y="660.5" width="297" height="45"/>
+                                <rect key="frame" x="363.5" y="402" width="297" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="Escanear codigo QR y BC"/>
                                 <connections>
                                     <action selector="openQRBCScannerAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="ibQ-Ws-PI9"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="WSP-Yw-5DY">
+                                <rect key="frame" x="0.0" y="866" width="1024" height="500"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mhc-1e-lvW">
+                                        <rect key="frame" x="0.0" y="0.0" width="511.5" height="500"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QRTableViewCell" id="aXm-XF-6Gr" customClass="QRTableViewCell" customModule="QRBarcodeScannerDemo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="511.5" height="72.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aXm-XF-6Gr" id="R7j-Qj-lxU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="511.5" height="72.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41A-Dm-9HT">
+                                                            <rect key="frame" x="16" y="11" width="479.5" height="50.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="kPg-17-uIE"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="systemGreenColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="41A-Dm-9HT" firstAttribute="leading" secondItem="R7j-Qj-lxU" secondAttribute="leadingMargin" id="1cc-L3-UvO"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="41A-Dm-9HT" secondAttribute="trailing" id="1sz-gG-8Ts"/>
+                                                        <constraint firstItem="41A-Dm-9HT" firstAttribute="top" secondItem="R7j-Qj-lxU" secondAttribute="topMargin" id="fJV-6d-MND"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="41A-Dm-9HT" secondAttribute="bottom" id="pk5-NJ-waV"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="qrDataLabel" destination="41A-Dm-9HT" id="x54-ii-hOu"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="McY-UE-sN7">
+                                        <rect key="frame" x="512.5" y="0.0" width="511.5" height="500"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BCTableViewCell" id="0cE-1V-grg" customClass="BCTableViewCell" customModule="QRBarcodeScannerDemo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="511.5" height="50.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0cE-1V-grg" id="9VU-vW-Nog">
+                                                    <rect key="frame" x="0.0" y="0.0" width="511.5" height="50.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0x-JD-TJM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="511.5" height="50.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="VOO-Os-Cj8"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="systemGreenColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="d0x-JD-TJM" firstAttribute="top" secondItem="9VU-vW-Nog" secondAttribute="top" id="1Ou-6e-JwD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="d0x-JD-TJM" secondAttribute="trailing" id="UeT-pJ-cUs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="d0x-JD-TJM" secondAttribute="bottom" id="hwc-th-NJk"/>
+                                                        <constraint firstItem="d0x-JD-TJM" firstAttribute="leading" secondItem="9VU-vW-Nog" secondAttribute="leading" id="sKa-zV-240"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="bcDataLabel" destination="d0x-JD-TJM" id="YjT-68-Omf"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="vkq-IA-sNW"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yUf-Vd-uzS">
+                                <rect key="frame" x="20" y="806" width="984" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datos QR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXa-cS-Nuk">
+                                        <rect key="frame" x="0.0" y="0.0" width="492" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datos Código de barras" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70F-JN-V1d">
+                                        <rect key="frame" x="492" y="0.0" width="492" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="oEM-aO-C3J"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="BJj-n9-dST" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="43i-6f-pgJ"/>
-                            <constraint firstItem="BJj-n9-dST" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8uZ-9y-84v"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WSP-Yw-5DY" secondAttribute="trailing" id="1Ax-lB-mDn"/>
+                            <constraint firstItem="yUf-Vd-uzS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="XYE-LK-uLO"/>
+                            <constraint firstItem="BJj-n9-dST" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yoc-xk-NhO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WSP-Yw-5DY" secondAttribute="bottom" id="YvP-uB-Co2"/>
+                            <constraint firstItem="BJj-n9-dST" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="300" id="eVi-qG-obW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yUf-Vd-uzS" secondAttribute="trailing" constant="20" id="gfT-TS-PnX"/>
+                            <constraint firstItem="WSP-Yw-5DY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jyd-Zy-S92"/>
+                            <constraint firstItem="WSP-Yw-5DY" firstAttribute="top" secondItem="yUf-Vd-uzS" secondAttribute="bottom" constant="10" id="zY8-v1-sMr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Demo Scanner QR y BC" id="gzd-2G-eFF"/>
+                    <connections>
+                        <outlet property="bcTableView" destination="McY-UE-sN7" id="I9s-9Y-ZZu"/>
+                        <outlet property="qrTableView" destination="Mhc-1e-lvW" id="sbq-Aa-viL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,6 +175,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

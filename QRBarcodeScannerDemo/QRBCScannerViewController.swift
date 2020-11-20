@@ -7,12 +7,13 @@
 
 import UIKit
 import AVFoundation
+import Resolver
 
 class QRBCScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    
+    @Injected var viewModel: ViewModel
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -82,13 +83,18 @@ class QRBCScannerViewController: UIViewController, AVCaptureMetadataOutputObject
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
+            found(code: stringValue, typeCode: readableObject.type.rawValue)
         }
         navigationController?.popViewController(animated: true)
     }
     
-    func found(code: String) {
+    func found(code: String, typeCode: String) {
         print(code)
+        if typeCode == "org.iso.QRCode" {
+            viewModel.qrCodeScannedFromScannerCamera.onNext(code)
+            return
+        }
+        viewModel.bcCodeScannerFromScannerCamera.onNext(code)
     }
     
     override var prefersStatusBarHidden: Bool {
