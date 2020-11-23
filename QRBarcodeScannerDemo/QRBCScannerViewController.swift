@@ -37,7 +37,7 @@ class QRBCScannerViewController: UIViewController, AVCaptureMetadataOutputObject
         }
         
         let metadatOutput = AVCaptureMetadataOutput()
-        
+    
         if captureSession.canAddOutput(metadatOutput) {
             captureSession.addOutput(metadatOutput)
             metadatOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
@@ -103,5 +103,16 @@ class QRBCScannerViewController: UIViewController, AVCaptureMetadataOutputObject
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+    
+    func convertRectOfInterest(rect: CGRect) -> CGRect {
+        let screenRect = self.view.frame
+        let screenWidth = screenRect.width
+        let screenHeight = screenRect.height
+        let newX = 1 / (screenWidth / rect.minX)
+        let newY = 1 / (screenHeight / rect.minY)
+        let newWidth = 1 / (screenWidth / rect.width)
+        let newHeight = 1 / (screenHeight / rect.height)
+        return CGRect(x: newY, y: newX, width: newHeight, height: newWidth)
     }
 }
