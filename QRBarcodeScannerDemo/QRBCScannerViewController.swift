@@ -37,9 +37,22 @@ class QRBCScannerViewController: UIViewController, AVCaptureMetadataOutputObject
         }
         
         let metadatOutput = AVCaptureMetadataOutput()
+        
+        let size = 300
+        let screenWidth = view.frame.width
+        let screenHeight = view.frame.height
+        let xPos = (Int(screenWidth) / 2) - (size / 2)
+        let yPos = (Int(screenHeight) / 2) - (size / 2)
+        let scanRect = CGRect(x: Int(xPos), y: yPos, width: size, height: size)
+
+        let scanAreaView = UIView()
+        scanAreaView.layer.borderColor = UIColor.red.cgColor
+        scanAreaView.layer.borderWidth = 8
+        scanAreaView.frame = scanRect
     
         if captureSession.canAddOutput(metadatOutput) {
             captureSession.addOutput(metadatOutput)
+            metadatOutput.rectOfInterest = convertRectOfInterest(rect: scanRect)
             metadatOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadatOutput.metadataObjectTypes = [.qr, .ean8, .ean13, .pdf417]
             
@@ -53,6 +66,8 @@ class QRBCScannerViewController: UIViewController, AVCaptureMetadataOutputObject
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
         captureSession.startRunning()
+        
+        view.addSubview(scanAreaView)
     }
     
     func failed() {
